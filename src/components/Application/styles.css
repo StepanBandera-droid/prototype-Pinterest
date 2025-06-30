@@ -1,0 +1,15 @@
+header {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: dimgray;
+  height: 80px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: large;
+  color: whitesmoke;
+}
