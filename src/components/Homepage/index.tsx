@@ -1,13 +1,13 @@
-import type { ReactElement } from "react";
-import photo from "../../assets/data/photos.json?raw";
+import { useEffect, type ReactElement } from "react";
 
-interface IImageTemplate {
-  id: number;
-  src: string;
-  alt: string;
-}
+// import images from "../../assets/data/images.json";
+
 const Hompage = (): ReactElement => {
-  const images: IImageTemplate[] = JSON.parse(photo);
+  useEffect(() => {
+    fetch("../../assets/data/images.json")
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  }, []);
 
   // const images = [
   //   { id: 1, src: "./src/assets/images/image1.jpg", alt: "Image 1" },
@@ -32,9 +32,9 @@ const Hompage = (): ReactElement => {
 
   return (
     <div className="gallery">
-      {images.map((image) => (
-        <img key={image.id} src={image.src} alt={image.alt} />
-      ))}
+      {/* {data.map((image) => (
+        // <img key={image.id} src={image.src} alt={image.alt} />
+      // ))} */}
     </div>
   );
 };
