@@ -1,6 +1,4 @@
-import { useState, useEffect, type ReactElement } from "react";
 import Card from "../Card/index.tsx";
-import images from "../../assets/data/images.json";
 
 interface IImageData {
   id: number;
@@ -9,20 +7,18 @@ interface IImageData {
   isFavorite: boolean;
 }
 
-const Hompage = (): ReactElement => {
-  const [data, setData] = useState<IImageData[]>(images);
-
-  const handleClick = (): void => {};
-
+const Hompage: React.FC<{
+  data: IImageData[];
+  onToggleFavorite: (id: number) => void;
+}> = ({ data, onToggleFavorite }) => {
   return (
     <div className="gallery">
       {data.map((image) => (
         <Card
-          id={image.id}
-          src={image.src}
-          alt={image.alt}
-          onClick={handleClick}
-        ></Card>
+          key={image.id}
+          image={image}
+          onToggleFavorite={onToggleFavorite}
+        />
       ))}
     </div>
   );

@@ -1,15 +1,19 @@
 import type { ReactElement } from "react";
 import { useState } from "react";
 
-interface ICard {
+interface IImageData {
   id: number;
   src: string;
   alt: string;
-  onClick: () => void;
-  children?: string;
+  isFavorite: boolean;
 }
 
-const Card = ({ id, src, alt, onClick }: ICard): ReactElement => {
+interface ICard {
+  image: IImageData;
+  onToggleFavorite: (id: number) => void;
+}
+
+const Card = ({ image, onToggleFavorite }: ICard): ReactElement => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
@@ -22,14 +26,14 @@ const Card = ({ id, src, alt, onClick }: ICard): ReactElement => {
         setIsHovered(false);
       }}
     >
-      <img src={src} alt={alt}></img>
+      <img src={image.src} alt={image.alt}></img>
       <button
-        id={String(id)}
+        id={String(image.id)}
         style={{ display: isHovered ? "block" : "none" }}
         className="add-favorite"
-        onClick={onClick}
+        onClick={() => onToggleFavorite(image.id)}
       >
-        Сохранить
+        {image.isFavorite ? "Сохранено" : "Сохранить"}
       </button>
     </div>
   );
