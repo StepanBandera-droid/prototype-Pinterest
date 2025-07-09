@@ -2,12 +2,14 @@ import type { ReactElement } from "react";
 import { useState } from "react";
 
 interface ICard {
+  id: number;
   src: string;
   alt: string;
   onClick: () => void;
+  children?: string;
 }
 
-const Card = ({ src, alt, onClick }: ICard): ReactElement => {
+const Card = ({ id, src, alt, onClick }: ICard): ReactElement => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
@@ -22,6 +24,7 @@ const Card = ({ src, alt, onClick }: ICard): ReactElement => {
     >
       <img src={src} alt={alt}></img>
       <button
+        id={String(id)}
         style={{ display: isHovered ? "block" : "none" }}
         className="add-favorite"
         onClick={onClick}
