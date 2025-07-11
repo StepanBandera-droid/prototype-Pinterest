@@ -1,19 +1,10 @@
-import Header from "../Header";
-import Hompage from "../Homepage";
-import Favorites from "../Favorites";
+import Router from "../../Router";
 import imageData from "../../assets/data/images.json";
+import type { IImageData } from "../../domains/image";
 
 import type { ReactElement } from "react";
-import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import "./styles.css";
-
-interface IImageData {
-  id: number;
-  src: string;
-  alt: string;
-  isFavorite: boolean;
-}
 
 const App = (): ReactElement => {
   const [data, setData] = useState<IImageData[]>(imageData);
@@ -27,21 +18,7 @@ const App = (): ReactElement => {
   };
   return (
     <>
-      <Header />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Hompage data={data} onToggleFavorite={handleToggleFavorite} />
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <Favorites data={data} onToggleFavorite={handleToggleFavorite} />
-          }
-        />
-      </Routes>
+      <Router data={data} onToggleFavorite={handleToggleFavorite} />
     </>
   );
 };

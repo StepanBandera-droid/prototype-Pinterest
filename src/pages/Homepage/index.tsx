@@ -1,11 +1,5 @@
-import Card from "../Card/index.tsx";
-
-interface IImageData {
-  id: number;
-  src: string;
-  alt: string;
-  isFavorite: boolean;
-}
+import Card from "../../components/Card/index.tsx";
+import type { IImageData } from "../../domains/image";
 
 const Hompage: React.FC<{
   data: IImageData[];

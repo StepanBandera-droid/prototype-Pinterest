@@ -1,12 +1,6 @@
 import type { ReactElement } from "react";
 import { useState } from "react";
-
-interface IImageData {
-  id: number;
-  src: string;
-  alt: string;
-  isFavorite: boolean;
-}
+import type { IImageData } from "../../domains/image";
 
 interface ICard {
   image: IImageData;

@@ -1,11 +1,5 @@
-import Card from "../Card";
-
-interface IImageData {
-  id: number;
-  src: string;
-  alt: string;
-  isFavorite: boolean;
-}
+import Card from "../../components/Card";
+import type { IImageData } from "../../domains/image";
 
 const Favorites: React.FC<{
   data: IImageData[];
@@ -13,10 +7,12 @@ const Favorites: React.FC<{
 }> = ({ data, onToggleFavorite }) => {
   const favoriteImages = data.filter((image) => image.isFavorite);
 
-  const favoritesContent =
-    favoriteImages.length === 0 ? (
-      <p>Избранных фотографий пока что нет</p>
-    ) : (
+  if (!favoriteImages.length) {
+    return <p>Избранных фотографий нет</p>;
+  }
+  return (
+    <div>
+      <h1>Избранные фотографии:</h1>
       <div className="gallery">
         {favoriteImages.map((image) => (
           <Card
@@ -26,11 +22,6 @@ const Favorites: React.FC<{
           />
         ))}
       </div>
-    );
-  return (
-    <div>
-      <h1>Избранные фотографии:</h1>
-      {favoritesContent}
     </div>
   );
 };
