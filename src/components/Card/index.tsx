@@ -23,7 +23,11 @@ const Card = ({ image, onToggleFavorite }: ICard): ReactElement => {
       <img src={image.src} alt={image.alt}></img>
       <button
         id={String(image.id)}
-        style={{ display: isHovered ? "block" : "none" }}
+        style={{
+          opacity: isHovered ? 1 : 0,
+          visibility: isHovered ? "visible" : "hidden",
+          backgroundColor: image.isFavorite ? "grey" : "red",
+        }}
         className="add-favorite"
         onClick={() => onToggleFavorite(image.id)}
       >
